@@ -16,18 +16,17 @@
 
 seznam = []
 
-with open("besede_sprejemljive.txt") as dat:
+with open("besede_vse.txt") as dat:
     for beseda in dat:
         seznam.append(beseda[:-1])
 
+i = 0
 for beseda in seznam:
-    i = 0
-    ime = "sprejemljive_dolzine_" + str(len(beseda))  + ".txt"
+    ime = "vse_dolzine_" + str(len(beseda))  + ".txt"
+    if i % 5000 == 1:
+        print(beseda + " " + str(i))
+    i += 1
     with open(ime, "a") as datoteka:
-        print(beseda)
-        datoteka.write(beseda + "\n")
-        if i % 10000 == 0:
-            print(beseda)
-        i += 1
+        datoteka.write(beseda.lower() + "\n")
 
 print("done")
