@@ -22,7 +22,7 @@ with open("besede_sprejemljive.txt") as dat:
 
 for beseda in seznam:
     i = 0
-    ime = "sprejemljive dolzine " + str(len(beseda))  + ".txt"
+    ime = "sprejemljive_dolzine_" + str(len(beseda))  + ".txt"
     with open(ime, "a") as datoteka:
         print(beseda)
         datoteka.write(beseda + "\n")
