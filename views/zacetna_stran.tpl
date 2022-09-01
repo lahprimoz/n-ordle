@@ -9,3 +9,7 @@
     <li> <a href="/sprejemljive/"> <button> Wordle z običajnimi besedami </button> <a> </li>
     <li> <a href="/vse/"> <button> Wordle z besedami, ki lahko vsebujejo števila in/ali posebne znake </button> <a> </li>
 </ol>
+
+<form method="POST" action="/nova_beseda/">
+<button>Nova beseda</button>
+</form>

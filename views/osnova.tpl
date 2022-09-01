@@ -6,9 +6,5 @@
 
 <body>
     {{ !base }}
-
-    <footer>
-        © 2022 - Primož Lah
-    </footer>
 </body>
 </html>
