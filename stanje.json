@@ -1,10 +1,17 @@
 {
-    "odgovor": "terts\n",
-    "ugibanje_1": "testi",
-    "ugibanje_2": null,
-    "ugibanje_3": null,
-    "ugibanje_4": null,
-    "ugibanje_5": null,
-    "ugibanje_6": null,
-    "aktualno_ugibanje": null
+    "odgovor": "vixen\n",
+    "ugibanje_1": "nasty",
+    "ugibanje_2": "liver",
+    "ugibanje_3": "gumbo",
+    "ugibanje_4": "style",
+    "ugibanje_5": "poker",
+    "ugibanje_6": "chose",
+    "aktualno_ugibanje": null,
+    "seznam_pravilnosti": [
+        "Y",
+        "R",
+        "R",
+        "R",
+        "R"
+    ]
 }

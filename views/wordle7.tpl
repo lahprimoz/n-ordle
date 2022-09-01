@@ -5,19 +5,15 @@
 
 <article>
     <p>
-        <form method="POST" action="/wordle/ugibanje6/">
-        <input type="text" name="ugibanje" size="2" minlength="5" maxlength="5" required autofocus>
-        </form>
-    </p>
-</article>
-
-
-<article>
-    <p>
         {{ stanje.ugibanje_1 }} <br>
         {{ stanje.ugibanje_2 }} <br>
         {{ stanje.ugibanje_3 }} <br>
         {{ stanje.ugibanje_4 }} <br>
         {{ stanje.ugibanje_5 }} <br>
+        {{ stanje.ugibanje_6 }} <br>
     </p>
 </article>
+
+<form method="POST" action="/nova_beseda/">
+<button>Nova beseda</button>
+</form>

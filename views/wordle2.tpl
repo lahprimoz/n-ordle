@@ -1,5 +1,7 @@
 % rebase("osnova.tpl")
-% import bottle
+% from model import Besede
+% stanje = Besede.preberi_iz_datoteke("stanje.json")
+% end
 
 <article>
     <p>
@@ -12,20 +14,6 @@
 
 <article>
     <p>
-        <center>
-            <table>
-                <thead>
-                    <tr>
-                    <center>
-                        <th style="background-color:#006400;">A</th>
-                        <th>A</th>
-                        <th>A</th>
-                        <th>A</th>
-                        <th>A</th>
-                    </center>
-                    </tr>
-                </thead>
-            </table>
-        </center>
+        {{ stanje.ugibanje_1 }}
     </p>
 </article>
