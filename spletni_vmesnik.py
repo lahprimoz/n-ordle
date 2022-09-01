@@ -15,7 +15,7 @@ def zacetna_stran():
 def nova_beseda():
     stanje = Besede(odgovor=Besede.izberi_besedo_wordle())
     stanje.shrani_v_datoteko(IME_DATOTEKE)
-    bottle.redirect("/")
+    bottle.redirect("/wordle/")
 
 @bottle.get("/wordle/")
 def igraj_wordle():
@@ -30,7 +30,8 @@ def preveri_wordle():
     ugibanje = bottle.request.forms["ugibanje"]
     stanje.ugibanje_1 = ugibanje
     stanje.shrani_v_datoteko(IME_DATOTEKE)
-    Besede.preveri_besedo_wordle(self=None, beseda=ugibanje, pravilna=trenutni_odgovor)
+    seznam = Besede.preveri_besedo_wordle(self=None, beseda=ugibanje, pravilna=trenutni_odgovor)
+    stanje.seznam_pravilnosti = seznam
     bottle.redirect("/wordle2/")
 
 @bottle.get("/wordle2/")
@@ -111,25 +112,31 @@ def preveri_wordle():
     stanje.ugibanje_6 = ugibanje
     stanje.shrani_v_datoteko(IME_DATOTEKE)
     Besede.preveri_besedo_wordle(self=None, beseda=ugibanje, pravilna=trenutni_odgovor)
-    bottle.redirect("/wordle/")
+    bottle.redirect("/wordle7/")
 
-@bottle.get("/sprejemljive/")
-def izberi_dolzino_sprejemljive():
-    return bottle.template("sprejemljive_dolzina.tpl")
+@bottle.get("/wordle7/")
+def igraj_wordle():
+    iskana_beseda = Besede(Besede.izberi_besedo_wordle())
+    stanje.shrani_v_datoteko(IME_DATOTEKE)
+    return bottle.template("wordle7.tpl")
 
-@bottle.get("/sprejemljive/<dolzina>/")
-def igraj_sprejemljive(dolzina):
-    odgovor = Besede(Besede.izberi_besedo_sprejemljive(dolzina))
-    return bottle.template("sprejemljive_igra")
-
-@bottle.get("/vse/")
-def izberi_dolzino_vse():
-    return bottle.template("vse_dolzina.tpl")
-
-@bottle.get("/vse/<dolzina>/")
-def igraj_vse(dolzina):
-    odgovor = Besede(Besede.izberi_besedo_vse(dolzina))
-    return bottle.template("vse_igra")
+# @bottle.get("/sprejemljive/")
+# def izberi_dolzino_sprejemljive():
+#     return bottle.template("sprejemljive_dolzina.tpl")
+# 
+# @bottle.get("/sprejemljive/<dolzina>/")
+# def igraj_sprejemljive(dolzina):
+#     odgovor = Besede(Besede.izberi_besedo_sprejemljive(dolzina))
+#     return bottle.template("sprejemljive_igra")
+# 
+# @bottle.get("/vse/")
+# def izberi_dolzino_vse():
+#     return bottle.template("vse_dolzina.tpl")
+# 
+# @bottle.get("/vse/<dolzina>/")
+# def igraj_vse(dolzina):
+#     odgovor = Besede(Besede.izberi_besedo_vse(dolzina))
+#     return bottle.template("vse_igra")
 
 
 
