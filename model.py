@@ -1,8 +1,18 @@
 import random
+import json
 
 class Besede:
-    def __init__(self, beseda):
-        self.beseda = beseda
+    def __init__(self, odgovor, ugibanje_1=None, 
+        ugibanje_2=None, ugibanje_3=None, ugibanje_4=None, 
+        ugibanje_5=None, ugibanje_6=None, aktualno_ugibanje=None):
+        self.odgovor = odgovor
+        self.ugibanje_1 = ugibanje_1
+        self.ugibanje_2 = ugibanje_2
+        self.ugibanje_3 = ugibanje_3
+        self.ugibanje_4 = ugibanje_4
+        self.ugibanje_5 = ugibanje_5
+        self.ugibanje_6 = ugibanje_6
+        self.aktualno_ugibanje = aktualno_ugibanje
 
     @staticmethod
     def izberi_besedo_wordle():
@@ -36,12 +46,11 @@ class Besede:
                     beseda = dat.readline()
             return beseda
 
-    def preveri_besedo_wordle(self):
-        pravilna = Besede.izberi_besedo_wordle()
+    def preveri_besedo_wordle(self, beseda, pravilna):
         rezultat = []
-        for i in self.beseda.lower():
+        for i in beseda.lower():
             if i in pravilna.lower():
-                if self.beseda.index(i) == pravilna.index(i):
+                if beseda.index(i) == pravilna.index(i):
                     rezultat.append("G")
                 else:
                     rezultat.append("Y")
@@ -95,3 +104,39 @@ class Besede:
             if i != "G":
                 return False
         return True
+
+    def v_slovar(self):
+        return {
+            "odgovor": self.odgovor,
+            "ugibanje_1": self.ugibanje_1,
+            "ugibanje_2": self.ugibanje_2,
+            "ugibanje_3": self.ugibanje_3,
+            "ugibanje_4": self.ugibanje_4,
+            "ugibanje_5": self.ugibanje_5,
+            "ugibanje_6": self.ugibanje_6,
+            "aktualno_ugibanje": self.aktualno_ugibanje
+        }
+
+    @staticmethod
+    def iz_slovarja(slovar):
+        return Besede(
+            slovar["odgovor"],
+            slovar["ugibanje_1"],
+            slovar["ugibanje_2"],
+            slovar["ugibanje_3"],
+            slovar["ugibanje_4"],
+            slovar["ugibanje_5"],
+            slovar["ugibanje_6"],
+            slovar["aktualno_ugibanje"]
+        )
+
+    def shrani_v_datoteko(self, ime_dat):
+        with open(ime_dat, "w") as dat:
+            slovar = self.v_slovar()
+            json.dump(slovar, dat, indent=4, ensure_ascii=False)
+
+    @staticmethod
+    def preberi_iz_datoteke(ime_dat):
+        with open(ime_dat) as dat:
+            slovar = json.load(dat)
+            return Besede.iz_slovarja(slovar)

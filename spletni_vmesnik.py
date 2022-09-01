@@ -1,14 +1,117 @@
 from model import Besede
 import bottle
 
+IME_DATOTEKE = "stanje.json"
+try:
+    stanje = Besede.preberi_iz_datoteke(IME_DATOTEKE)
+except FileNotFoundError:
+    stanje = Besede(odgovor=Besede.izberi_besedo_wordle())
+
 @bottle.get("/")
 def zacetna_stran():
     return bottle.template("zacetna_stran.tpl")
 
+@bottle.post("/nova_beseda/")
+def nova_beseda():
+    stanje = Besede(odgovor=Besede.izberi_besedo_wordle())
+    stanje.shrani_v_datoteko(IME_DATOTEKE)
+    bottle.redirect("/")
+
 @bottle.get("/wordle/")
 def igraj_wordle():
-    odgovor = Besede(Besede.izberi_besedo_wordle())
+    iskana_beseda = Besede(Besede.izberi_besedo_wordle())
+    stanje.shrani_v_datoteko(IME_DATOTEKE)
     return bottle.template("wordle.tpl")
+
+@bottle.post("/wordle/ugibanje1/")
+def preveri_wordle():
+    trenutno_stanje = stanje.preberi_iz_datoteke(IME_DATOTEKE)
+    trenutni_odgovor = trenutno_stanje.odgovor
+    ugibanje = bottle.request.forms["ugibanje"]
+    stanje.ugibanje_1 = ugibanje
+    stanje.shrani_v_datoteko(IME_DATOTEKE)
+    Besede.preveri_besedo_wordle(self=None, beseda=ugibanje, pravilna=trenutni_odgovor)
+    bottle.redirect("/wordle2/")
+
+@bottle.get("/wordle2/")
+def igraj_wordle():
+    iskana_beseda = Besede(Besede.izberi_besedo_wordle())
+    stanje.shrani_v_datoteko(IME_DATOTEKE)
+    return bottle.template("wordle2.tpl")
+
+@bottle.post("/wordle/ugibanje2/")
+def preveri_wordle():
+    trenutno_stanje = stanje.preberi_iz_datoteke(IME_DATOTEKE)
+    trenutni_odgovor = trenutno_stanje.odgovor
+    ugibanje = bottle.request.forms["ugibanje"]
+    stanje.ugibanje_2 = ugibanje
+    stanje.shrani_v_datoteko(IME_DATOTEKE)
+    Besede.preveri_besedo_wordle(self=None, beseda=ugibanje, pravilna=trenutni_odgovor)
+    bottle.redirect("/wordle3/")
+
+@bottle.get("/wordle3/")
+def igraj_wordle():
+    iskana_beseda = Besede(Besede.izberi_besedo_wordle())
+    stanje.shrani_v_datoteko(IME_DATOTEKE)
+    return bottle.template("wordle3.tpl")
+
+@bottle.post("/wordle/ugibanje3/")
+def preveri_wordle():
+    trenutno_stanje = stanje.preberi_iz_datoteke(IME_DATOTEKE)
+    trenutni_odgovor = trenutno_stanje.odgovor
+    ugibanje = bottle.request.forms["ugibanje"]
+    stanje.ugibanje_3 = ugibanje
+    stanje.shrani_v_datoteko(IME_DATOTEKE)
+    Besede.preveri_besedo_wordle(self=None, beseda=ugibanje, pravilna=trenutni_odgovor)
+    bottle.redirect("/wordle4/")
+
+@bottle.get("/wordle4/")
+def igraj_wordle():
+    iskana_beseda = Besede(Besede.izberi_besedo_wordle())
+    stanje.shrani_v_datoteko(IME_DATOTEKE)
+    return bottle.template("wordle4.tpl")
+
+@bottle.post("/wordle/ugibanje4/")
+def preveri_wordle():
+    trenutno_stanje = stanje.preberi_iz_datoteke(IME_DATOTEKE)
+    trenutni_odgovor = trenutno_stanje.odgovor
+    ugibanje = bottle.request.forms["ugibanje"]
+    stanje.ugibanje_4 = ugibanje
+    stanje.shrani_v_datoteko(IME_DATOTEKE)
+    Besede.preveri_besedo_wordle(self=None, beseda=ugibanje, pravilna=trenutni_odgovor)
+    bottle.redirect("/wordle5/")
+
+@bottle.get("/wordle5/")
+def igraj_wordle():
+    iskana_beseda = Besede(Besede.izberi_besedo_wordle())
+    stanje.shrani_v_datoteko(IME_DATOTEKE)
+    return bottle.template("wordle5.tpl")
+
+@bottle.post("/wordle/ugibanje5/")
+def preveri_wordle():
+    trenutno_stanje = stanje.preberi_iz_datoteke(IME_DATOTEKE)
+    trenutni_odgovor = trenutno_stanje.odgovor
+    ugibanje = bottle.request.forms["ugibanje"]
+    stanje.ugibanje_5 = ugibanje
+    stanje.shrani_v_datoteko(IME_DATOTEKE)
+    Besede.preveri_besedo_wordle(self=None, beseda=ugibanje, pravilna=trenutni_odgovor)
+    bottle.redirect("/wordle6/")
+
+@bottle.get("/wordle6/")
+def igraj_wordle():
+    iskana_beseda = Besede(Besede.izberi_besedo_wordle())
+    stanje.shrani_v_datoteko(IME_DATOTEKE)
+    return bottle.template("wordle6.tpl")
+
+@bottle.post("/wordle/ugibanje6/")
+def preveri_wordle():
+    trenutno_stanje = stanje.preberi_iz_datoteke(IME_DATOTEKE)
+    trenutni_odgovor = trenutno_stanje.odgovor
+    ugibanje = bottle.request.forms["ugibanje"]
+    stanje.ugibanje_6 = ugibanje
+    stanje.shrani_v_datoteko(IME_DATOTEKE)
+    Besede.preveri_besedo_wordle(self=None, beseda=ugibanje, pravilna=trenutni_odgovor)
+    bottle.redirect("/wordle/")
 
 @bottle.get("/sprejemljive/")
 def izberi_dolzino_sprejemljive():
@@ -17,7 +120,7 @@ def izberi_dolzino_sprejemljive():
 @bottle.get("/sprejemljive/<dolzina>/")
 def igraj_sprejemljive(dolzina):
     odgovor = Besede(Besede.izberi_besedo_sprejemljive(dolzina))
-    return bottle.template(f"sprejemljive_{dolzina}")
+    return bottle.template("sprejemljive_igra")
 
 @bottle.get("/vse/")
 def izberi_dolzino_vse():
@@ -26,7 +129,7 @@ def izberi_dolzino_vse():
 @bottle.get("/vse/<dolzina>/")
 def igraj_vse(dolzina):
     odgovor = Besede(Besede.izberi_besedo_vse(dolzina))
-    return bottle.template(f"vse_{dolzina}")
+    return bottle.template("vse_igra")
 
 
 
