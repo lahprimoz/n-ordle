@@ -4,7 +4,7 @@ import json
 class Besede:
     def __init__(self, odgovor, ugibanje_1=None, 
         ugibanje_2=None, ugibanje_3=None, ugibanje_4=None, 
-        ugibanje_5=None, ugibanje_6=None, aktualno_ugibanje=None):
+        ugibanje_5=None, ugibanje_6=None, aktualno_ugibanje=None, seznam_pravilnosti=None):
         self.odgovor = odgovor
         self.ugibanje_1 = ugibanje_1
         self.ugibanje_2 = ugibanje_2
@@ -13,6 +13,7 @@ class Besede:
         self.ugibanje_5 = ugibanje_5
         self.ugibanje_6 = ugibanje_6
         self.aktualno_ugibanje = aktualno_ugibanje
+        self.seznam_pravilnosti = seznam_pravilnosti
 
     @staticmethod
     def izberi_besedo_wordle():
@@ -114,7 +115,8 @@ class Besede:
             "ugibanje_4": self.ugibanje_4,
             "ugibanje_5": self.ugibanje_5,
             "ugibanje_6": self.ugibanje_6,
-            "aktualno_ugibanje": self.aktualno_ugibanje
+            "aktualno_ugibanje": self.aktualno_ugibanje,
+            "seznam_pravilnosti": self.seznam_pravilnosti
         }
 
     @staticmethod
@@ -127,7 +129,8 @@ class Besede:
             slovar["ugibanje_4"],
             slovar["ugibanje_5"],
             slovar["ugibanje_6"],
-            slovar["aktualno_ugibanje"]
+            slovar["aktualno_ugibanje"],
+            slovar["seznam_pravilnosti"]
         )
 
     def shrani_v_datoteko(self, ime_dat):
