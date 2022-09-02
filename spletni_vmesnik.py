@@ -1,5 +1,6 @@
 from model import Besede
 import bottle
+import os
 
 IME_DATOTEKE = "stanje.json"
 try:
@@ -13,8 +14,7 @@ def zacetna_stran():
 
 @bottle.post("/nova_beseda/")
 def nova_beseda():
-    stanje = Besede(odgovor=Besede.izberi_besedo_wordle())
-    stanje.shrani_v_datoteko(IME_DATOTEKE)
+    Besede.izbrisi("stanje.json")
     bottle.redirect("/wordle/")
 
 @bottle.get("/wordle/")
@@ -29,9 +29,9 @@ def preveri_wordle():
     trenutni_odgovor = trenutno_stanje.odgovor
     ugibanje = bottle.request.forms["ugibanje"]
     stanje.ugibanje_1 = ugibanje
-    stanje.shrani_v_datoteko(IME_DATOTEKE)
     seznam = Besede.preveri_besedo_wordle(self=None, beseda=ugibanje, pravilna=trenutni_odgovor)
     stanje.seznam_pravilnosti = seznam
+    stanje.shrani_v_datoteko(IME_DATOTEKE)
     bottle.redirect("/wordle2/")
 
 @bottle.get("/wordle2/")

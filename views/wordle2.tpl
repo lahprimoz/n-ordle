@@ -14,6 +14,6 @@
 
 <article>
     <p>
-        {{ stanje.ugibanje_1 }}
+        {{Besede.izpisi_pravilnost(stanje.seznam_pravilnosti, stanje.ugibanje_1)}}
     </p>
 </article>

@@ -1,5 +1,6 @@
 import random
 import json
+import os
 
 class Besede:
     def __init__(self, odgovor, ugibanje_1=None, 
@@ -21,7 +22,7 @@ class Besede:
         with open("besede/besede_uradne.txt") as dat:
             for _ in range(indeks):
                 beseda = dat.readline()
-            return beseda
+            return beseda[:-1]
 
 #    @staticmethod
 #    def izberi_besedo_sprejemljive(dolzina):
@@ -52,7 +53,7 @@ class Besede:
         for i in beseda.lower():
             if i in pravilna.lower():
                 if beseda.index(i) == pravilna.index(i):
-                    rezultat.append("U+2705")
+                    rezultat.append("G")
                 else:
                     rezultat.append("Y")
             else:
@@ -143,3 +144,22 @@ class Besede:
         with open(ime_dat) as dat:
             slovar = json.load(dat)
             return Besede.iz_slovarja(slovar)
+
+    @staticmethod
+    def izpisi_pravilnost(seznam, beseda):
+        niz = ""
+        i = 0
+        for znak in seznam:
+            if znak == "G":
+                niz += beseda[i].upper() + " "
+            elif znak == "Y":
+                niz += beseda[i].lower() + " "
+            elif znak == "R":
+                niz += "_ "
+            i += 1
+        return niz
+
+    @staticmethod
+    def izbrisi(ime="stanje.json"):
+        os.remove(ime)
+        return None
