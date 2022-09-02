@@ -131,3 +131,7 @@ dmypy.json
 # Osebni .gitignore
 .txt
 .json
+vse_igra.tpl
+vse_dolzina.tpl
+sprejemljive_igra.tpl
+sprejemljive_dolzina.tpl
