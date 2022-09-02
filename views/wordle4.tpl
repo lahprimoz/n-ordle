@@ -14,8 +14,12 @@
 
 <article>
     <p>
-        {{Besede.izpisi_pravilnost(stanje.seznam_pravilnosti, stanje.ugibanje_1)}} <br>
-        {{Besede.izpisi_pravilnost(stanje.seznam_pravilnosti, stanje.ugibanje_2)}} <br>
+        {{stanje.izpis1}} <br>
+        {{stanje.izpis2}} <br>
         {{Besede.izpisi_pravilnost(stanje.seznam_pravilnosti, stanje.ugibanje_3)}}
     </p>
 </article>
+
+<form method="POST" action="/nova_beseda/">
+<button>Nova beseda</button>
+</form>

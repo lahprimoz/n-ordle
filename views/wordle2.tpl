@@ -17,3 +17,7 @@
         {{Besede.izpisi_pravilnost(stanje.seznam_pravilnosti, stanje.ugibanje_1)}}
     </p>
 </article>
+
+<form method="POST" action="/nova_beseda/">
+<button>Nova beseda</button>
+</form>

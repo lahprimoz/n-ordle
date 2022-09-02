@@ -5,11 +5,11 @@
 
 <article>
     <p>
-        {{Besede.izpisi_pravilnost(stanje.seznam_pravilnosti, stanje.ugibanje_1)}} <br>
-        {{Besede.izpisi_pravilnost(stanje.seznam_pravilnosti, stanje.ugibanje_2)}} <br>
-        {{Besede.izpisi_pravilnost(stanje.seznam_pravilnosti, stanje.ugibanje_3)}} <br>
-        {{Besede.izpisi_pravilnost(stanje.seznam_pravilnosti, stanje.ugibanje_4)}} <br>
-        {{Besede.izpisi_pravilnost(stanje.seznam_pravilnosti, stanje.ugibanje_5)}} <br>
+        {{stanje.izpis1}} <br>
+        {{stanje.izpis2}} <br>
+        {{stanje.izpis3}} <br>
+        {{stanje.izpis4}} <br>
+        {{stanje.izpis5}} <br>
         {{Besede.izpisi_pravilnost(stanje.seznam_pravilnosti, stanje.ugibanje_6)}} <br>
         Beseda je: {{stanje.odgovor}}
     </p>

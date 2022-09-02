@@ -1,6 +1,5 @@
 from model import Besede
 import bottle
-import os
 
 IME_DATOTEKE = "stanje.json"
 try:
@@ -31,6 +30,7 @@ def preveri_wordle():
     stanje.ugibanje_1 = ugibanje
     seznam = Besede.preveri_besedo_wordle(self=None, beseda=ugibanje, pravilna=trenutni_odgovor)
     stanje.seznam_pravilnosti = seznam
+    stanje.izpis1 = Besede.izpisi_pravilnost(stanje.seznam_pravilnosti, stanje.ugibanje_1)
     stanje.shrani_v_datoteko(IME_DATOTEKE)
     bottle.redirect("/wordle2/")
 
@@ -46,8 +46,10 @@ def preveri_wordle():
     trenutni_odgovor = trenutno_stanje.odgovor
     ugibanje = bottle.request.forms["ugibanje"]
     stanje.ugibanje_2 = ugibanje
+    seznam = Besede.preveri_besedo_wordle(self=None, beseda=ugibanje, pravilna=trenutni_odgovor)
+    stanje.seznam_pravilnosti = seznam
+    stanje.izpis2 = Besede.izpisi_pravilnost(stanje.seznam_pravilnosti, stanje.ugibanje_2)
     stanje.shrani_v_datoteko(IME_DATOTEKE)
-    Besede.preveri_besedo_wordle(self=None, beseda=ugibanje, pravilna=trenutni_odgovor)
     bottle.redirect("/wordle3/")
 
 @bottle.get("/wordle3/")
@@ -62,8 +64,10 @@ def preveri_wordle():
     trenutni_odgovor = trenutno_stanje.odgovor
     ugibanje = bottle.request.forms["ugibanje"]
     stanje.ugibanje_3 = ugibanje
+    seznam = Besede.preveri_besedo_wordle(self=None, beseda=ugibanje, pravilna=trenutni_odgovor)
+    stanje.seznam_pravilnosti = seznam
+    stanje.izpis3 = Besede.izpisi_pravilnost(stanje.seznam_pravilnosti, stanje.ugibanje_3)
     stanje.shrani_v_datoteko(IME_DATOTEKE)
-    Besede.preveri_besedo_wordle(self=None, beseda=ugibanje, pravilna=trenutni_odgovor)
     bottle.redirect("/wordle4/")
 
 @bottle.get("/wordle4/")
@@ -78,8 +82,10 @@ def preveri_wordle():
     trenutni_odgovor = trenutno_stanje.odgovor
     ugibanje = bottle.request.forms["ugibanje"]
     stanje.ugibanje_4 = ugibanje
+    seznam = Besede.preveri_besedo_wordle(self=None, beseda=ugibanje, pravilna=trenutni_odgovor)
+    stanje.seznam_pravilnosti = seznam
+    stanje.izpis4 = Besede.izpisi_pravilnost(stanje.seznam_pravilnosti, stanje.ugibanje_4)
     stanje.shrani_v_datoteko(IME_DATOTEKE)
-    Besede.preveri_besedo_wordle(self=None, beseda=ugibanje, pravilna=trenutni_odgovor)
     bottle.redirect("/wordle5/")
 
 @bottle.get("/wordle5/")
@@ -94,8 +100,10 @@ def preveri_wordle():
     trenutni_odgovor = trenutno_stanje.odgovor
     ugibanje = bottle.request.forms["ugibanje"]
     stanje.ugibanje_5 = ugibanje
+    seznam = Besede.preveri_besedo_wordle(self=None, beseda=ugibanje, pravilna=trenutni_odgovor)
+    stanje.seznam_pravilnosti = seznam
+    stanje.izpis5 = Besede.izpisi_pravilnost(stanje.seznam_pravilnosti, stanje.ugibanje_5)
     stanje.shrani_v_datoteko(IME_DATOTEKE)
-    Besede.preveri_besedo_wordle(self=None, beseda=ugibanje, pravilna=trenutni_odgovor)
     bottle.redirect("/wordle6/")
 
 @bottle.get("/wordle6/")
@@ -110,8 +118,10 @@ def preveri_wordle():
     trenutni_odgovor = trenutno_stanje.odgovor
     ugibanje = bottle.request.forms["ugibanje"]
     stanje.ugibanje_6 = ugibanje
+    seznam = Besede.preveri_besedo_wordle(self=None, beseda=ugibanje, pravilna=trenutni_odgovor)
+    stanje.seznam_pravilnosti = seznam
+    stanje.izpis6 = Besede.izpisi_pravilnost(stanje.seznam_pravilnosti, stanje.ugibanje_6)
     stanje.shrani_v_datoteko(IME_DATOTEKE)
-    Besede.preveri_besedo_wordle(self=None, beseda=ugibanje, pravilna=trenutni_odgovor)
     bottle.redirect("/wordle7/")
 
 @bottle.get("/wordle7/")
